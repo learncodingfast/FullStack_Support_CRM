@@ -118,9 +118,9 @@ function TicketDetails() {
               onChange={(e) => setStatus(e.target.value)}
               className="w-full border rounded p-3 mt-2"
             >
-              <option>Open</option>
-              <option>In Progress</option>
-              <option>Closed</option>
+              <option value="Open">Open</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Closed">Closed</option>
             </select>
 
           </div>
