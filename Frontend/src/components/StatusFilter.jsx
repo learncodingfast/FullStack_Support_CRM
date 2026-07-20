@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StatusFilter = (status, setStatus) => {
+const StatusFilter = ({status, setStatus}) => {
   return (
     <div>
        <select
