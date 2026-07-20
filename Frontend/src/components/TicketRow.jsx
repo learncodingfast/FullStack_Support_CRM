@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import StatusBadge from "./StatusBadge";
 
-const TicketRow = () => {
+const TicketRow = ({ticket}) => {
   return (
     <div>
       <tr  className="border-b hover:bg-gray-50">
