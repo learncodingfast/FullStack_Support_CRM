@@ -1,6 +1,6 @@
 import React from 'react'
 
-const StatusBadge = () => {
+const StatusBadge = ({status}) => {
    let color = "bg-gray-500";
 
   if (status === "Open") {

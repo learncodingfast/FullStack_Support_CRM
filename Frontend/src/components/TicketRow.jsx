@@ -10,6 +10,7 @@ const TicketRow = ({ticket}) => {
         <td className="p-3">
             <Link  to={`/tickets/${ticket.ticket_id}`}
           className="text-blue-600 hover:underline">
+             {ticket.ticket_id}
             </Link>
         </td>
 
