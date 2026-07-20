@@ -3,7 +3,7 @@ import Navbar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import CreateTicket from './pages/CreateTicket'
-import TicketDeatails from './pages/TicketDeatails'
+import TicketDetails from './pages/TicketDetails'
 
 const App = () => {
   return (
@@ -11,7 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Dashboard/>}></Route>
         <Route path="/new" element={<CreateTicket/>}></Route>
-        <Route path="/tickets/:ticketId" element={<TicketDeatails/>}></Route>
+        <Route path="/tickets/:ticketId" element={<TicketDetails/>}></Route>
       </Routes>
     </div>
   )
