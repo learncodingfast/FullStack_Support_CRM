@@ -7,7 +7,7 @@ import { Toaster } from 'react-hot-toast'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HashRouter>
+    <HashRouter basename="/">
     <Toaster position='top-right'/>
     <App />
     </HashRouter>

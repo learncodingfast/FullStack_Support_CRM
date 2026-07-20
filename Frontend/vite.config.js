@@ -7,5 +7,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: '/',
+  base: "/FullStack_Support_CRM/",
 });
