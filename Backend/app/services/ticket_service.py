@@ -36,7 +36,7 @@ def get_all_tickets(
         sort: str= "newest"
 ):
     
-    query = db.query(models.ticket)
+    query = db.query(models.Ticket)
     if search :
         query = query.filter(
             or_(
@@ -48,25 +48,25 @@ def get_all_tickets(
             )
         )
 
-        if status:
-            query = query.filter(models.tickets.status == status)
+    if status:
+            query = query.filter(models.Ticket.status == status)
 
-        if sort == "oldest":
-            query = query.order_by(asc(models.tickets.created_at))
-        else:
-            query = query.order_by(desc(models.tickets.created_at))
+    if sort == "oldest":
+            query = query.order_by(asc(models.Ticket.created_at))
+    else:
+            query = query.order_by(desc(models.Ticket.created_at))
 
-        offset = (page - 1) * size
+    offset = (page - 1) * size
 
-        tickets = (
+    tickets = (
             query.offset(offset)
             .limit(size)
             .all()
         )
 
-        total = query.count()
+    total = query.count()
 
-        return {
+    return {
         "page": page,
         "size": size,
         "total": total,
@@ -74,47 +74,48 @@ def get_all_tickets(
         }
     
 
-    def get_ticket(db:Session, ticket_id= str):
+def get_ticket(db: Session, ticket_id: str):
 
         return (
             db.query(models.Ticket)
-            .filetr(models.Ticket.ticket_id==ticket_id)
+            .filter(models.Ticket.ticket_id == ticket_id)
             .first()
         )
     
-    def update_ticket(
-            db: Session,
-            ticket_id: str,
-            update_data: schemas.TicketUpdate,
-    ):
-        ticket = get_ticket(db, ticket_id)
-        
-        if ticket is None:
-            raise HTTPException(
-    status_code=404,
-    detail="Ticket not found"
-)
-    
+def update_ticket(
+    db: Session,
+    ticket_id: str,
+    update_data: schemas.TicketUpdate,
+):
+    ticket = get_ticket(db, ticket_id)
+
+    if ticket is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Ticket not found"
+        )
+
     ticket.status = update_data.status.value
     ticket.updated_at = datetime.utcnow()
 
     if update_data.note_text:
         note = models.Note(
-            ticket_id = ticket_id,
-            note_text= update_data.note_text
+            ticket_id=ticket.id,
+            note_text=update_data.note_text
         )
 
         db.add(note)
-        db.commit()
-        db.refresh(ticket)
 
-        return ticket
+    db.commit()
+    db.refresh(ticket)
 
-    def delete_ticket(
-        db:Session,
-        ticket_id:str,
+    return ticket
+
+def delete_ticket(
+    db:Session,
+    ticket_id:str,
     ):
-        ticket = get_ticket(db, ticket_id)
+    ticket = get_ticket(db, ticket_id)
 
     if ticket is None:
         raise HTTPException(
