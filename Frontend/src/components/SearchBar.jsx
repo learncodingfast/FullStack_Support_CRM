@@ -2,15 +2,23 @@ import React from 'react'
 
 const SearchBar = ({ search, setSearch }) => {
   return (
-    <div>
-      <input
-      type="text"
-      placeholder="Search tickets..."
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-      className="w-full md:w-80 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-    />
-    </div>
+   <div className="d-flex justify-content-end my-4">
+  <input
+    type="text"
+    placeholder="Search tickets..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="
+      form-control
+      w-100
+      p-3
+      rounded-pill
+      border-success
+      shadow
+      transition
+    "
+  />
+</div>
   )
 }
 

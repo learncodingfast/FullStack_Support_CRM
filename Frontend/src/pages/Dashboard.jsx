@@ -54,40 +54,54 @@ function Dashboard() {
 
   return (
     <>
-      <Navbar/>
+    <div className="container-fluid">
 
-      <div className="max-w-6xl mx-auto p-6">
+  <Navbar />
 
-        <div className="flex flex-col md:flex-row gap-4 justify-between mb-6">
+  <div className="container mt-4">
 
-          <SearchBar
-            search={search}
-            setSearch={setSearch}
-          />
+    <div className="row align-items-center mb-4">
+      <div className="col-md-8">
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+        />
+      </div>
 
-          <StatusFilter
-            status={status}
-            setStatus={setStatus}
-          />
+      <div className="col-md-4">
+        <StatusFilter
+          status={status}
+          setStatus={setStatus}
+        />
+      </div>
+    </div>
 
+    {loading ? (
+      <Loader />
+    ) : (
+      <>
+        <div className="card">
+          <div className="card-body p-0">
+            <div className="table-responsive">
+              <TicketTable tickets={tickets} />
+            </div>
+          </div>
         </div>
 
-        {loading ? (
-          <Loader />
-        ) : (
-          <>
-            <TicketTable tickets={tickets} />
+        <div className="d-flex justify-content-center mt-4">
+          <Pagination
+            page={page}
+            total={total}
+            size={size}
+            setPage={setPage}
+          />
+        </div>
+      </>
+    )}
 
-            <Pagination
-              page={page}
-              total={total}
-              size={size}
-              setPage={setPage}
-            />
-          </>
-        )}
+  </div>
 
-      </div>
+</div>
     </>
   );
 }

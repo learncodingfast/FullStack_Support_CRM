@@ -1,28 +1,24 @@
 import React from 'react'
 
-const StatusBadge = ({status}) => {
-   let color = "bg-gray-500";
+const StatusBadge = ({ status }) => {
+  let color = "bg-secondary";
 
   if (status === "Open") {
-    color = "bg-green-500";
+    color = "bg-success";
   }
 
   if (status === "In Progress") {
-    color = "bg-yellow-500";
+    color = "bg-warning text-dark";
   }
 
   if (status === "Closed") {
-    color = "bg-red-500";
+    color = "bg-danger";
   }
- 
-    return (
-    <div>
-       <span
-      className={`${color} text-white text-sm px-3 py-1 rounded-full`}
-    >
+
+  return (
+    <span className={`${color} text-white small px-3 py-2 rounded-pill`}>
       {status}
     </span>
-    </div>
   )
 }
 

@@ -1,6 +1,5 @@
-@import "tailwindcss";
 
-/* * {
+ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -32,31 +31,165 @@ select {
 a {
   text-decoration: none;
   color: inherit;
-} */
+} 
 
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+.softgreen {
+  background-color: #c1e4cd;
 }
 
-body{
-  background:#f3f4f6;
-  font-family:Arial, Helvetica, sans-serif;
+.greenborder{
+  border: #073d1b 1px 1px 1px 1px;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+/* Soft Green Navbar */
+
+.soft-green-navbar {
+    background: #dcfce7;
+    border-radius: 0 0 25px 25px;
+    box-shadow: 0 10px 30px rgba(5, 73, 30, 0.7);
+    animation: navbarSlide .7s ease;
 }
 
-button{
-  cursor:pointer;
+
+/* Navbar entrance animation */
+
+@keyframes navbarSlide {
+
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-input,
-textarea,
-select{
-  outline:none;
+
+/* Logo */
+
+.brand-green {
+    color: #15803d !important;
+    transition: all .3s ease;
+    position: relative;
+}
+
+
+.brand-green:hover {
+    color: #166534 !important;
+    transform: scale(1.08);
+}
+
+
+/* Animated underline */
+
+.brand-green::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0%;
+    height: 3px;
+
+    background: #16a34a;
+
+    border-radius: 20px;
+
+    transition: .4s;
+
+}
+
+
+.brand-green:hover::after {
+    width: 100%;
+}
+
+
+
+/* New Ticket Button */
+
+.new-ticket-btn {
+
+    background: white;
+
+    color: #16a34a;
+
+    border: 2px solid #86efac;
+
+    border-radius: 30px;
+
+    font-weight: 600;
+
+    transition: all .35s ease;
+
+    box-shadow: 0 8px 20px rgba(22,163,74,.15);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+
+/* Hover */
+
+.new-ticket-btn:hover {
+
+    background: #073d1b;
+
+    color: white;
+
+    transform: translateY(-4px) scale(1.05);
+
+    box-shadow: 0 15px 35px rgba(4, 27, 12, 0.35);
+
+}
+
+
+/* Click effect */
+
+.new-ticket-btn:active {
+
+    transform: scale(.95);
+
+}
+
+
+/* Shine animation */
+
+.new-ticket-btn::before {
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.7),
+        transparent
+    );
+
+    transition:.7s;
+
+}
+
+
+.new-ticket-btn:hover::before {
+
+    left:130%;
+
 }

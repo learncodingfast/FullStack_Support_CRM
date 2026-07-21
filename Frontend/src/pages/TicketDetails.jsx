@@ -14,11 +14,8 @@ function TicketDetails() {
   const navigate = useNavigate();
 
   const [ticket, setTicket] = useState(null);
-
   const [status, setStatus] = useState("");
-
   const [note, setNote] = useState("");
-
   const [loading, setLoading] = useState(true);
 
   function loadTicket() {
@@ -73,101 +70,105 @@ function TicketDetails() {
     <>
       <Navbar />
 
-      <div className="max-w-3xl mx-auto mt-8 bg-white p-6 rounded-lg shadow">
+      <div className="container mt-5">
+        <div className="card shadow">
 
-        <h2 className="text-2xl font-bold mb-6">
-          {ticket.ticket_id}
-        </h2>
+          <div className="card-body p-4">
 
-        <div className="space-y-3">
+            <h2 className="h3 fw-bold mb-4">
+              {ticket.ticket_id}
+            </h2>
 
-          <div>
-            <strong>Customer</strong>
-            <p>{ticket.customer_name}</p>
-          </div>
+            <div className="d-flex flex-column gap-3">
 
-          <div>
-            <strong>Email</strong>
-            <p>{ticket.customer_email}</p>
-          </div>
+              <div>
+                <strong>Customer</strong>
+                <p className="mb-0">{ticket.customer_name}</p>
+              </div>
 
-          <div>
-            <strong>Subject</strong>
-            <p>{ticket.subject}</p>
-          </div>
+              <div>
+                <strong>Email</strong>
+                <p className="mb-0">{ticket.customer_email}</p>
+              </div>
 
-          <div>
-            <strong>Description</strong>
-            <p>{ticket.description}</p>
-          </div>
+              <div>
+                <strong>Subject</strong>
+                <p className="mb-0">{ticket.subject}</p>
+              </div>
 
-          <div>
-            <strong>Current Status</strong>
+              <div>
+                <strong>Description</strong>
+                <p className="mb-0">{ticket.description}</p>
+              </div>
 
-            <div className="mt-2">
-              <StatusBadge status={ticket.status} />
+              <div>
+                <strong>Current Status</strong>
+
+                <div className="mt-2">
+                  <StatusBadge status={ticket.status} />
+                </div>
+              </div>
+
+
+              <div>
+                <strong>Update Status</strong>
+
+                <select
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                  className="form-select mt-2"
+                >
+                  <option value="Open">Open</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Closed">Closed</option>
+                </select>
+              </div>
+
+
+              <div>
+                <strong>Add Note</strong>
+
+                <textarea
+                  rows="4"
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
+                  className="form-control mt-2"
+                />
+              </div>
+
+
+              <div>
+                <strong>Previous Notes</strong>
+
+                <div className="mt-3">
+                  <NoteList notes={ticket.notes} />
+                </div>
+              </div>
+
+
+              <div className="d-flex gap-3 pt-3">
+
+                <button
+                  onClick={() => navigate("/")}
+                  className="btn btn-secondary px-4"
+                >
+                  Back
+                </button>
+
+                <button
+                  onClick={handleSave}
+                  className="btn btn-primary px-4"
+                >
+                  Save Changes
+                </button>
+
+              </div>
+
             </div>
-          </div>
-
-          <div>
-
-            <strong>Update Status</strong>
-
-            <select
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              className="w-full border rounded p-3 mt-2"
-            >
-              <option value="Open">Open</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Closed">Closed</option>
-            </select>
-
-          </div>
-
-          <div>
-
-            <strong>Add Note</strong>
-
-            <textarea
-              rows="4"
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-              className="w-full border rounded p-3 mt-2"
-            />
-
-          </div>
-
-          <div>
-
-            <strong>Previous Notes</strong>
-
-            <div className="mt-3">
-              <NoteList notes={ticket.notes} />
-            </div>
-
-          </div>
-
-          <div className="flex gap-3 pt-4">
-
-            <button
-              onClick={() => navigate("/")}
-              className="bg-gray-500 text-white px-5 py-2 rounded"
-            >
-              Back
-            </button>
-
-            <button
-              onClick={handleSave}
-              className="bg-blue-600 text-white px-5 py-2 rounded"
-            >
-              Save Changes
-            </button>
 
           </div>
 
         </div>
-
       </div>
     </>
   );

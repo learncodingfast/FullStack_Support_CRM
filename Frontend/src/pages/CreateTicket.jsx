@@ -61,71 +61,93 @@ function CreateTicket() {
     <>
       <Navbar />
 
-      <div className="max-w-2xl mx-auto mt-8 bg-white p-6 rounded-lg shadow">
+      <div className="container mt-5">
 
-        <h2 className="text-2xl font-bold mb-6">
-          Create Support Ticket
-        </h2>
+        <div className="card shadow">
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="card-body p-4">
 
-          <input
-            type="text"
-            name="customer_name"
-            placeholder="Customer Name"
-            value={form.customer_name}
-            onChange={handleChange}
-            className="w-full border rounded p-3"
-          />
+            <h2 className="h3 fw-bold mb-4">
+              Create Support Ticket
+            </h2>
 
-          <input
-            type="email"
-            name="customer_email"
-            placeholder="Email"
-            value={form.customer_email}
-            onChange={handleChange}
-            className="w-full border rounded p-3"
-          />
 
-          <input
-            type="text"
-            name="subject"
-            placeholder="Subject"
-            value={form.subject}
-            onChange={handleChange}
-            className="w-full border rounded p-3"
-          />
+            <form onSubmit={handleSubmit}>
 
-          <textarea
-            rows="6"
-            name="description"
-            placeholder="Description"
-            value={form.description}
-            onChange={handleChange}
-            className="w-full border rounded p-3"
-          />
+              <div className="mb-3">
+                <input
+                  type="text"
+                  name="customer_name"
+                  placeholder="Customer Name"
+                  value={form.customer_name}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
 
-          <div className="flex gap-3">
 
-            <button
-              type="button"
-              onClick={() => navigate("/")}
-              className="bg-gray-500 text-white px-6 py-2 rounded"
-            >
-              Cancel
-            </button>
+              <div className="mb-3">
+                <input
+                  type="email"
+                  name="customer_email"
+                  placeholder="Email"
+                  value={form.customer_email}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="bg-blue-600 text-white px-6 py-2 rounded"
-            >
-              {loading ? "Creating..." : "Create Ticket"}
-            </button>
+
+              <div className="mb-3">
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Subject"
+                  value={form.subject}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+
+
+              <div className="mb-3">
+                <textarea
+                  rows="6"
+                  name="description"
+                  placeholder="Description"
+                  value={form.description}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+
+
+              <div className="d-flex gap-3">
+
+                <button
+                  type="button"
+                  onClick={() => navigate("/")}
+                  className="btn btn-secondary px-4"
+                >
+                  Cancel
+                </button>
+
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="btn btn-primary px-4"
+                >
+                  {loading ? "Creating..." : "Create Ticket"}
+                </button>
+
+              </div>
+
+            </form>
 
           </div>
 
-        </form>
+        </div>
 
       </div>
     </>

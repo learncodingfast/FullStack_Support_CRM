@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import { HashRouter } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
