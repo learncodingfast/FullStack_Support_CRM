@@ -7,7 +7,11 @@ import Loader from "../components/Loader";
 import StatusBadge from "../components/StatusBadge";
 import NoteList from "../components/NoteList";
 
-import { getTicket, updateTicket } from "../services/api";
+import {
+  getTicket,
+  updateTicket,
+  deleteTicket,
+} from "../services/api";
 
 function TicketDetails() {
   const { ticketId } = useParams();
@@ -46,11 +50,33 @@ function TicketDetails() {
       note_text: note || null,
     })
       .then(() => {
-        toast.success("Ticket updated");
+        toast.success("Ticket updated successfully");
         navigate("/");
       })
       .catch(() => {
         toast.error("Update failed");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+
+  function handleDelete() {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this ticket?"
+    );
+
+    if (!confirmDelete) return;
+
+    setLoading(true);
+
+    deleteTicket(ticketId)
+      .then(() => {
+        toast.success("Ticket deleted successfully");
+        navigate("/");
+      })
+      .catch(() => {
+        toast.error("Failed to delete ticket");
       })
       .finally(() => {
         setLoading(false);
@@ -72,7 +98,6 @@ function TicketDetails() {
 
       <div className="container mt-5">
         <div className="card shadow">
-
           <div className="card-body p-4">
 
             <h2 className="h3 fw-bold mb-4">
@@ -109,7 +134,6 @@ function TicketDetails() {
                 </div>
               </div>
 
-
               <div>
                 <strong>Update Status</strong>
 
@@ -124,7 +148,6 @@ function TicketDetails() {
                 </select>
               </div>
 
-
               <div>
                 <strong>Add Note</strong>
 
@@ -133,9 +156,9 @@ function TicketDetails() {
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   className="form-control mt-2"
+                  placeholder="Write a support note..."
                 />
               </div>
-
 
               <div>
                 <strong>Previous Notes</strong>
@@ -145,7 +168,6 @@ function TicketDetails() {
                 </div>
               </div>
 
-
               <div className="d-flex gap-3 pt-3">
 
                 <button
@@ -153,6 +175,13 @@ function TicketDetails() {
                   className="btn btn-secondary px-4"
                 >
                   Back
+                </button>
+
+                <button
+                  onClick={handleDelete}
+                  className="btn btn-danger px-4"
+                >
+                  Delete
                 </button>
 
                 <button
@@ -167,7 +196,6 @@ function TicketDetails() {
             </div>
 
           </div>
-
         </div>
       </div>
     </>
